@@ -101,7 +101,3 @@ To use your custom transformer, simply add it to the `MainTransformer`:
 ```php
 $transformer->addTransformer(new CustomTransformer());
 ```
-
-## License
-This package is open-source and available under the MIT License.
-
