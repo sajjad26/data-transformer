@@ -4,23 +4,28 @@
 This package transforms product and variant data into a Shopify-compatible format. It supports multiple languages (English, German, French) and allows flexible transformations using a modular transformer system.
 
 ## Installation
-If published on Packagist, install via Composer:
-```sh
-composer require sajjad26/data-transformer
-```
+Since this package is hosted on GitHub, you need to add it as a repository manually in your project.
 
-For local development, add the repository manually in `composer.json`:
+### **1️⃣ Modify `composer.json`**
+Add the following under the `repositories` section:
 ```json
 "repositories": [
     {
-        "type": "path",
-        "url": "../data-transformer"
+        "type": "vcs",
+        "url": "https://github.com/sajjad26/data-transformer"
     }
 ]
 ```
-Then install:
+
+### **2️⃣ Require the Package**
+Run the following command to install it:
 ```sh
-composer require sajjad26/data-transformer --dev
+composer require sajjad26/data-transformer:dev-main
+```
+
+If you've tagged a release (e.g., `v1.0.0`), use:
+```sh
+composer require sajjad26/data-transformer:^1.0
 ```
 
 ## Usage
@@ -76,9 +81,25 @@ $transformedData = $transformer->transform();
 print_r($transformedData);
 ```
 
-## Running Tests
-```sh
-vendor/bin/phpunit
+## Creating Custom Transformers
+If you need to apply additional transformations, you can create your own transformer by implementing the `TransformerInterface`.
+
+### **Example: Custom Transformer**
+```php
+namespace Your\Application\Transformers;
+
+class CustomTransformer implements TransformerInterface {
+    public function transform(array $originalData, array $transformedData): array {
+        // Custom transformation logic here
+        $transformedData['custom_field'] = strtoupper($originalData['custom_field'] ?? '');
+        return $transformedData;
+    }
+}
+```
+
+To use your custom transformer, simply add it to the `MainTransformer`:
+```php
+$transformer->addTransformer(new CustomTransformer());
 ```
 
 ## License
