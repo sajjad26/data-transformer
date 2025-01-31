@@ -1,0 +1,23 @@
+{
+    "name": "sajjad26/data-transformer",
+    "description": "Transforms data",
+    "version": "1.0.0",
+    "type": "library",
+    "require": {
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sajjad26\\DataTransformer\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always"
+    },
+    "authors": [
+        {
+            "name": "Sajjad Ashraf"
+        }
+    ]
+}
